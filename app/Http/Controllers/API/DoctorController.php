@@ -34,12 +34,13 @@ class DoctorController extends Controller
           'name'      => $request->name,
           'email'     => $request->email,
           'password'  => bcrypt($request->password),
-          'role_id'   => 2
+          'role_id'   => 1
         ]);
         
         if( $user ){
           $doctor = Doctor::create([
-            'speciality' => $request->speciality
+            'speciality' => $request->speciality,
+            'user_id'    => $user->id
           ]);
         }
         
