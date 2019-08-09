@@ -12,7 +12,7 @@ class CreatePatientsTable extends Migration {
       $table->unsignedBigInteger('user_id');
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       
-      $table->string('birthdate');
+      $table->date('birthdate');
       $table->double('weight');
       $table->double('height');
       $table->timestamps();
