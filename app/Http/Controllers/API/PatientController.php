@@ -70,9 +70,9 @@ class PatientController extends Controller
     public function update(Request $request, Patient $patient)
     {
       $patient->update([
-        'birthdate' => $request->birthdate,
-        'weight'    => $request->weight,
-        'height'    => $request->height
+        'birthdate' => ($request->birthdate) ?: $patient->birthdate,
+        'weight'    => ($request->weight)    ?: $patient->weight,
+        'height'    => ($request->height)    ?: $patient->height
       ]);
       
       return new PatientResource( $patient );
