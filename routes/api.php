@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resources([
   'doctors'  => 'API\DoctorController',
   'patients' => 'API\PatientController',
-  'revisers' => 'API\RevisersController',
+  'revisers' => 'API\ReviserController',
   'products' => 'API\ProductController',
   'consultations' => 'API\ConsultationController',
   'attachments'   => 'API\AttachmentController',
