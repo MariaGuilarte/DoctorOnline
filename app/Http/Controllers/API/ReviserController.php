@@ -38,7 +38,8 @@ class ReviserController extends Controller
         
         if( $user ){
           $reviser = Reviser::create([
-            'user_id'   => $user->id
+            'user_id'   => $user->id,
+            'role_id'   => 3
           ]);
         }
         
