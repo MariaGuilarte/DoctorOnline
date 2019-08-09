@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
-  protected $fillable = ['id', 'user_id', 'especiality'];
+  protected $fillable = ['id', 'user_id', 'speciality'];
 
   public function consultations(){
     return $this->hasMany('App\Consultation');
