@@ -28,5 +28,12 @@ Route::resources([
 
 
 Route::prefix('admin')->group(function(){
-  Route::resource('doctors', 'API\Admin\DoctorController');
+  Route::resources([
+    'doctors'       => 'API\Admin\DoctorController',
+    'patients'      => 'API\Admin\PatientController',
+    'revisers'      => 'API\Admin\ReviserController',
+    'products'      => 'API\Admin\ProductController',
+    'consultations' => 'API\Admin\ConsultationController',
+    'attachments'   => 'API\Admin\AttachmentController',
+  ]);
 });
