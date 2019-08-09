@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API\Admin;
 
-use App\Doctor;
+use App\Reviser;
 use App\User;
-use App\Http\Resources\Doctor as DoctorResource;
+use App\Http\Resources\Reviser as ReviserResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
-class DoctorController extends Controller
+class ReviserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::all();
-        return DoctorResource::collection( $doctors );
+        $revisers = Reviser::all();
+        return ReviserResource::collection( $revisers );
     }
 
     /**
@@ -33,56 +33,54 @@ class DoctorController extends Controller
         $user = User::create([
           'name'      => $request->name,
           'email'     => $request->email,
-          'password'  => bcrypt($request->password),
-          'role_id'   => 1
+          'password'  => bcrypt($request->password)
         ]);
         
         if( $user ){
-          $doctor = Doctor::create([
-            'speciality' => $request->speciality,
-            'user_id'    => $user->id
+          $reviser = Reviser::create([
+            'user_id'   => $user->id
           ]);
         }
         
-        return new DoctorResource( $doctor );
+        return new ReviserResource( $reviser );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Doctor  $doctor
+     * @param  \App\Reviser  $reviser
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show(Reviser $reviser)
     {
-        return new DoctorResource( $doctor );
+        return new ReviserResource( $reviser );
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Doctor  $doctor
+     * @param  \App\Reviser  $reviser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(Request $request, Reviser $reviser)
     {
-      $doctor->update([
-        'speciality' => ($request->speciality) ?: $doctor->speciality
+      $reviser->update([
+        'user_id'        => ($request->user_id) ?: $reviser->user_id
       ]);
       
-      return new DoctorResource( $doctor );
+      return new ReviserResource( $reviser );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Doctor  $doctor
+     * @param  \App\Reviser  $reviser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(Reviser $reviser)
     {
-        $doctor->delete();
-        return response()->json(['message'=>'Doctor deleted successfuly']);
+        $reviser->delete();
+        return response()->json(['message'=>'Reviser deleted successfuly']);
     }
 }

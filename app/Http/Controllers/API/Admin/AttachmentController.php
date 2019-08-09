@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Admin;
+namespace App\Http\Controllers\API;
 
 use App\Attachment;
 use App\Http\Resources\Attachment as AttachmentResource;

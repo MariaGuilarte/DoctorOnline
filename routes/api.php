@@ -25,3 +25,8 @@ Route::resources([
   'consultations' => 'API\ConsultationController',
   'attachments'   => 'API\AttachmentController',
 ]);
+
+
+Route::prefix('admin')->group(function(){
+  Route::resource('doctors', 'API\Admin\DoctorController');
+});
