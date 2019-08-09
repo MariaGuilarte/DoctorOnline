@@ -9,12 +9,8 @@ class Consultation extends Model {
     'id', 'doctor_id', 'patient_id', 'reviser_id', 'product_id', 'condition', 'date'
   ];
 
-  public function product(){
-    return $this->belongsTo('App\Product');
-  }
-
-  public function form(){
-    return $this->hasOne('App\Form');
+  public function forms(){
+    return $this->hasMany('App\Form');
   }
 
   public function attachments(){
@@ -31,5 +27,9 @@ class Consultation extends Model {
 
   public function reviser(){
     return $this->belongsTo('App\Reviser');
+  }
+  
+  public function product(){
+    return $this->belongsTo('App\Product');
   }
 }
